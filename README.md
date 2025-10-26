@@ -37,7 +37,7 @@ Container runtime: containerd
 kubectl get nodes
 
 
-Saída esperada:
+
 
 NAME              STATUS   ROLES                  AGE    VERSION
 desktop-086q4jn   Ready    control-plane,master   4d1h   v1.33.5+k3s1
