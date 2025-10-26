@@ -94,5 +94,3 @@ Acesse: http://localhost:8081
 ArgoCD
 
 Interface: https://localhost:8080
-
-Interface: https://localhost:8080
