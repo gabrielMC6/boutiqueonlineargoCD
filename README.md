@@ -38,47 +38,53 @@ NAME              STATUS   ROLES                  AGE    VERSION
 desktop-086q4jn   Ready    control-plane,master   4d1h   v1.33.5+k3s1
 
 
-3. Instalação e Configuração do ArgoCD
-
-#### 3.1 Instalação no Cluster
-```bash
+3. ⚙️ Instalação e Configuração do ArgoCD
+3.1 Instalação no Cluster
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
-####3.2 Acesso à Interface Web
-bash
+3.2 Acesso à Interface Web
 kubectl port-forward svc/argocd-server -n argocd 8080:443
-Acessar: https://localhost:8080
-Ignorar aviso de certificado (ambiente local)
 
-####3.3 Obtenção da Senha Admin
+
+Acesse: https://localhost:8080
+
+Ignore o aviso de certificado (ambiente local)
+
+3.3 Obtenção da Senha Admin
 $password = kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}"
 [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($password))
 
-####3.4 Login no ArgoCD
+3.4 Login no ArgoCD
+
 Usuário: admin
-Senha: [senha obtida no passo anterior]
 
-4. Configuração do GitOps
+Senha: (valor obtido no passo anterior)
+
+4. 🔄 Configuração do GitOps no ArgoCD
+
 Application: online-boutique
-
 Repositório: https://github.com/gabrielMC6/gitops-microservices
 
 Path: k8s
-
 Cluster: https://kubernetes.default.svc
-
 Namespace: default
-5. Sincronização
-Sync manual com prune habilitado
+
+5. 🔁 Sincronização
+
+Sincronização manual com prune habilitado
 
 Auto-create namespace habilitado
 
-Aplicação sincronizada e healthy
+Aplicação: Synced ✅ e Healthy 💚
 
-###6. Acesso à Aplicação
-Frontend: kubectl port-forward svc/frontend 8081:80
+6. 🌐 Acesso à Aplicação
+Frontend
+kubectl port-forward svc/frontend 8081:80
 
-URL: http://localhost:8081
 
-ArgoCD: https://localhost:8080 
+Acesse: http://localhost:8081
+
+ArgoCD
+
+Interface: https://localhost:8080
