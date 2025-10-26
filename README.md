@@ -38,8 +38,7 @@ NAME              STATUS   ROLES                  AGE    VERSION
 desktop-086q4jn   Ready    control-plane,master   4d1h   v1.33.5+k3s1
 
 
-
-### 3. Instalação e Configuração do ArgoCD
+3. Instalação e Configuração do ArgoCD
 
 #### 3.1 Instalação no Cluster
 ```bash
