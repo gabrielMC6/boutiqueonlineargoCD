@@ -33,7 +33,53 @@ Executar um conjunto de microserviços (Online Boutique) em Kubernetes local usa
 
 #### 2.2 - Verificação do Cluster
 ```powershell
-kubectl get nodes
-<img width="941" height="451" alt="505748366-acda5ef2-6a39-4c21-9ac5-3f98b0db4193" src="https://github.com/user-attachments/assets/4febec68-f10b-4fd8-a94f-71ce47f9ac70" />
+ kubectl get nodes
+NAME              STATUS   ROLES                  AGE    VERSION
+desktop-086q4jn   Ready    control-plane,master   4d1h   v1.33.5+k3s1
 
 
+
+### 3. Instalação e Configuração do ArgoCD
+
+#### 3.1 Instalação no Cluster
+```bash
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+####3.2 Acesso à Interface Web
+bash
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+Acessar: https://localhost:8080
+Ignorar aviso de certificado (ambiente local)
+
+####3.3 Obtenção da Senha Admin
+$password = kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}"
+[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($password))
+
+####3.4 Login no ArgoCD
+Usuário: admin
+Senha: [senha obtida no passo anterior]
+
+4. Configuração do GitOps
+Application: online-boutique
+
+Repositório: https://github.com/gabrielMC6/gitops-microservices
+
+Path: k8s
+
+Cluster: https://kubernetes.default.svc
+
+Namespace: default
+5. Sincronização
+Sync manual com prune habilitado
+
+Auto-create namespace habilitado
+
+Aplicação sincronizada e healthy
+
+###6. Acesso à Aplicação
+Frontend: kubectl port-forward svc/frontend 8081:80
+
+URL: http://localhost:8081
+
+ArgoCD: https://localhost:8080 
