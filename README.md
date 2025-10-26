@@ -34,4 +34,5 @@ Executar um conjunto de microserviços (Online Boutique) em Kubernetes local usa
 #### 2.2 - Verificação do Cluster
 ```powershell
 kubectl get nodes
-<img width="497" height="52" alt="505750435-c360dbbf-f5eb-4af0-b2f2-f54c33f80653" src="https://github.com/user-attachments/assets/c478c566-6a53-4c9a-8964-a38dda0b391f" />
+
+<img width="497" height="52" alt="505750435-c360dbbf-f5eb-4af0-b2f2-f54c33f80653" src="https://github.com/user-attachments/assets/db5c96fa-fda3-456d-ad7a-948933af1ee9" />
